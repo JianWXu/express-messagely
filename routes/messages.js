@@ -1,3 +1,12 @@
+const jwt = require("jsonwebtoken");
+const Router = require("express").Router;
+const router = new Router();
+
+const User = require("../models/user");
+const { SECRET_KEY } = require("../config");
+const ExpressError = require("../expressError");
+const Message = require("../models/message");
+
 /** GET /:id - get detail of message.
  *
  * => {message: {id,
@@ -11,14 +20,12 @@
  *
  **/
 
-
 /** POST / - post message.
  *
  * {to_username, body} =>
  *   {message: {id, from_username, to_username, body, sent_at}}
  *
  **/
-
 
 /** POST/:id/read - mark message as read:
  *
@@ -28,3 +35,4 @@
  *
  **/
 
+module.exports = router;
