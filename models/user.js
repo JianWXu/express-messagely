@@ -14,12 +14,12 @@ class User {
    */ 
 
   static async register({ username, password, first_name, last_name, phone }) {
-    const hashedPass = bcrypt.hash(this.password, BCRYPT_WORK_FACTOR);
+    const hashedPass = bcrypt.hash(password, BCRYPT_WORK_FACTOR);
     const result = await db.query(
       `INSERT INTO users
       (username, password, first_name, last_name, phone)
       VALUES ($1, $2, $3, $4, $5) RETURNING username, password, first_name, last_name, phone`,
-      [this.username, hashedPass, this.first_name, this.last_name, this.phone]
+      [username, hashedPass, first_name, last_name, phone]
     );
     return result.rows[0];
   }
